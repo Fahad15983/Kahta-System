@@ -1,0 +1,18 @@
+export const sales = [
+  { id: 'INV-1048', customerId: 'CUS-001', customer: 'Ahmed Traders', date: '30 Sep 2026', items: 8, total: 125000, paid: 100000 },
+  { id: 'INV-1047', customerId: 'CUS-002', customer: 'Khan General Store', date: '29 Sep 2026', items: 5, total: 75000, paid: 75000 },
+  { id: 'INV-1046', customerId: 'CUS-003', customer: 'Ali Wholesale', date: '29 Sep 2026', items: 12, total: 210000, paid: 110000 },
+  { id: 'INV-1045', customerId: 'CUS-005', customer: 'Shah Enterprises', date: '28 Sep 2026', items: 16, total: 315000, paid: 315000 },
+  { id: 'INV-1044', customerId: 'CUS-004', customer: 'Bilal Mart', date: '27 Sep 2026', items: 6, total: 95000, paid: 50000 },
+  { id: 'INV-1043', customerId: 'CUS-006', customer: 'Usman Traders', date: '26 Sep 2026', items: 4, total: 120000, paid: 55000 },
+  { id: 'INV-1042', customerId: 'CUS-007', customer: 'Mian Super Store', date: '25 Sep 2026', items: 10, total: 185000, paid: 125000 },
+  { id: 'INV-1041', customerId: 'CUS-008', customer: 'Raza Cash & Carry', date: '24 Sep 2026', items: 9, total: 150000, paid: 150000 },
+  { id: 'INV-1040', customerId: 'CUS-009', customer: 'Sadiq Brothers', date: '23 Sep 2026', items: 7, total: 115000, paid: 40000 },
+  { id: 'INV-1039', customerId: 'CUS-010', customer: 'Naveed Store', date: '22 Sep 2026', items: 3, total: 65000, paid: 65000 },
+  { id: 'INV-1038', customerId: 'CUS-011', customer: 'Faisal Distributors', date: '21 Sep 2026', items: 8, total: 140000, paid: 80000 },
+  { id: 'INV-1037', customerId: 'CUS-012', customer: 'Hassan General Store', date: '20 Sep 2026', items: 4, total: 90000, paid: 0 },
+  { id: 'INV-1036', customerId: 'CUS-003', customer: 'Ali Wholesale', date: '18 Sep 2026', items: 6, total: 160000, paid: 100000 },
+  { id: 'INV-1035', customerId: 'CUS-001', customer: 'Ahmed Traders', date: '16 Sep 2026', items: 5, total: 180000, paid: 150000 },
+  { id: 'INV-1034', customerId: 'CUS-005', customer: 'Shah Enterprises', date: '14 Sep 2026', items: 11, total: 220000, paid: 220000 },
+  { id: 'INV-1033', customerId: 'CUS-007', customer: 'Mian Super Store', date: '12 Sep 2026', items: 6, total: 175000, paid: 125000 },
+]

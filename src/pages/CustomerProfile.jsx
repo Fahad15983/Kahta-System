@@ -1,0 +1,16 @@
+import { ArrowLeft, CreditCard, FilePlus2, MapPin, Phone, Plus } from 'lucide-react'
+import { Link, useParams } from 'react-router-dom'
+import Button from '../components/common/Button'
+import StatusBadge from '../components/common/StatusBadge'
+import { formatCurrency } from '../utils/formatCurrency'
+import { getBalance, getStatus } from '../utils/calculations'
+
+export default function CustomerProfile({ customers, sales }) {
+  const { customerId } = useParams()
+  const customer = customers.find((item) => item.id === customerId) || customers[0]
+  const customerSales = sales.filter((sale) => sale.customerId === customer.id)
+  let runningBalance = 0
+  const ledger = customerSales.flatMap((sale) => { const saleBalance = sale.total - sale.paid; runningBalance += saleBalance; return [{ date: sale.date, type: 'Sale', reference: sale.id, description: `${sale.items} products purchased`, debit: sale.total, credit: 0, balance: runningBalance }, { date: sale.date, type: 'Payment', reference: `PAY-${sale.id.slice(-3)}`, description: 'Payment received', debit: 0, credit: sale.paid, balance: runningBalance }] })
+  const balance = getBalance(customer)
+  return <div className="content-page"><Link className="back-link" to="/customers"><ArrowLeft size={15} /> Back to customers</Link><section className="profile-hero"><div className="profile-identity"><div className="profile-avatar">{customer.name.split(' ').map((word) => word[0]).slice(0, 2).join('')}</div><div><span className="eyebrow">CUSTOMER ACCOUNT</span><h2>{customer.name}</h2><div className="profile-meta"><span><Phone size={14} /> {customer.phone}</span><span><MapPin size={14} /> {customer.address}</span></div></div></div><div className="profile-actions"><Button variant="secondary" icon={CreditCard}>Add payment</Button><Button icon={Plus}>New sale</Button></div></section><div className="account-stats"><div><span>Total purchases</span><strong>{formatCurrency(customer.totalPurchases)}</strong><small>All-time account value</small></div><div><span>Total paid</span><strong className="positive-text">{formatCurrency(customer.paid)}</strong><small>Payments received</small></div><div><span>Remaining balance</span><strong className={balance ? 'amount-due' : 'positive-text'}>{formatCurrency(balance)}</strong><small><StatusBadge status={getStatus(customer.totalPurchases, customer.paid)} /></small></div></div><section className="panel ledger-panel"><div className="panel-header"><div><h3>Account ledger</h3><p>Complete transaction history for {customer.name}</p></div><Button variant="ghost" icon={FilePlus2}>Export ledger</Button></div><div className="table-wrap"><table><thead><tr><th>Date</th><th>Type</th><th>Reference</th><th>Description</th><th>Debit</th><th>Credit</th><th>Balance</th></tr></thead><tbody>{ledger.map((entry, index) => <tr key={`${entry.reference}-${index}`}><td>{entry.date}</td><td><span className={`ledger-type ${entry.type.toLowerCase()}`}>{entry.type}</span></td><td><span className="invoice-id">{entry.reference}</span></td><td>{entry.description}</td><td>{entry.debit ? formatCurrency(entry.debit) : '—'}</td><td className="positive-text">{entry.credit ? formatCurrency(entry.credit) : '—'}</td><td className={entry.balance ? 'amount-due' : ''}>{formatCurrency(entry.balance)}</td></tr>)}</tbody></table></div></section></div>
+}
